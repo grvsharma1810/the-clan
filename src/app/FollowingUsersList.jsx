@@ -12,6 +12,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { API_URL } from '../config';
 
 function FollowingUsersList() {
@@ -19,12 +20,14 @@ function FollowingUsersList() {
   const [followingList, setFollowingList] = useState([]);
   const [status, setStatus] = useState('idle');
   const navigate = useNavigate();
+  const {state:{userId}} = useLocation();
+
 
   useEffect(() => {
     (async function () {
       setStatus('loading');
       const response = await axios.get(
-        `${API_URL}/user-links?type=following`
+        `${API_URL}/user-links?userId=${userId}&&type=following`
       );
       console.log(response.data);
       setFollowingList(response.data.followings);

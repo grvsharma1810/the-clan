@@ -25,14 +25,14 @@ function ProfileHeader({ user, following }) {
             <Text
               cursor="pointer"
               display="inline-block"
-              onClick={() => navigate('/following')}
+              onClick={() => navigate('/following', {state:{userId: user._id}})}
             >
               {user?.followingCount} following
             </Text>
             <Text
               cursor="pointer"
               display="inline-block"
-              onClick={() => navigate('/followers')}
+              onClick={() => navigate('/followers',{state:{userId: user._id}})}
             >
               {user?.followerCount} followers
             </Text>
