@@ -3,12 +3,12 @@ import axios from "axios";
 import { API_URL } from "../../config";
 
 export const initPosts = createAsyncThunk('feed/initPosts', async (_, { getState }) => {
-    const response = await axios.get(`${API_URL}/home/feed?current=${getState().feed.next}&&size=10`);
+    const response = await axios.get(`${API_URL}/home/feed?current=${getState().feed.next}&&size=5`);
     return response.data;
 })
 
 export const fetchFeedPosts = createAsyncThunk('feed/fetchFeedPosts', async (_, { getState }) => {
-    const response = await axios.get(`${API_URL}/home/feed?current=${getState().feed.next}&&size=10`);
+    const response = await axios.get(`${API_URL}/home/feed?current=${getState().feed.next}&&size=5`);
     return response.data;
 })
 
