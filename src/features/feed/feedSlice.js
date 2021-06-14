@@ -50,6 +50,9 @@ const feedSlice = createSlice({
         }
     },
     extraReducers: {
+        [initPosts.pending]: (state, action) => {            
+            state.status = 'loading';
+        },
         [initPosts.fulfilled]: (state, action) => {
             state.posts = action.payload.posts;
             if (action.payload.next) {
