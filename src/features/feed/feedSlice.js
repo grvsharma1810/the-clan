@@ -1,34 +1,35 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "../../config";
 
 export const initPosts = createAsyncThunk('feed/initPosts', async (_, { getState }) => {
-    const response = await axios.get(`http://localhost:3001/home/feed?current=${getState().feed.next}&&size=1`);
+    const response = await axios.get(`${API_URL}/home/feed?current=${getState().feed.next}&&size=10`);
     return response.data;
 })
 
 export const fetchFeedPosts = createAsyncThunk('feed/fetchFeedPosts', async (_, { getState }) => {
-    const response = await axios.get(`http://localhost:3001/home/feed?current=${getState().feed.next}&&size=1`);
+    const response = await axios.get(`${API_URL}/home/feed?current=${getState().feed.next}&&size=10`);
     return response.data;
 })
 
 export const addNewPost = createAsyncThunk('feed/addNewPost', async (requestData) => {
-    const response = await axios.post(`http://localhost:3001/posts/`, requestData);
+    const response = await axios.post(`${API_URL}/posts/`, requestData);
     return response.data;
 })
 
 export const createLikeOnFeedPost = createAsyncThunk('feed/createLikeOnFeedPost', async (postId) => {
-    const response = await axios.post(`http://localhost:3001/posts/${postId}/likes`);
+    const response = await axios.post(`${API_URL}/posts/${postId}/likes`);
     return response.data;
 })
 
 export const removeLikeFromFeedPost = createAsyncThunk('feed/removeLikeFromFeedPost', async (postId) => {
-    const response = await axios.delete(`http://localhost:3001/posts/${postId}/likes`);
+    const response = await axios.delete(`${API_URL}/posts/${postId}/likes`);
     return response.data;
 })
 
 export const createCommentOnFeedPost = createAsyncThunk('feed/createCommentOnFeedPost', async (requestData) => {
     console.log({ requestData });
-    const response = await axios.post(`http://localhost:3001/posts/${requestData.postId}/comments`, requestData.comment);
+    const response = await axios.post(`${API_URL}/posts/${requestData.postId}/comments`, requestData.comment);
     return response.data;
 })
 

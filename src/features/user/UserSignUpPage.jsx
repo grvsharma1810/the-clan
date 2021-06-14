@@ -13,6 +13,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
+import { API_URL } from '../../config';
 
 function UserSignUpPage() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function UserSignUpPage() {
     try {
       setStatus('loading');
       const response = await axios.post(
-        'http://localhost:3001/signup',
+        `${API_URL}/signup`,
         formValues
       );
       setStatus('idle');

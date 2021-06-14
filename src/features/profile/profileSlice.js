@@ -1,38 +1,39 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
+import { API_URL } from "../../config";
 
 export const fetchProfilePosts = createAsyncThunk('profile/fetchProfilePosts', async (userId) => {
-    const response = await axios.get(`http://localhost:3001/posts?userId=${userId}`);
+    const response = await axios.get(`${API_URL}/posts?userId=${userId}`);
     return response.data;
 })
 
 export const fetchUser = createAsyncThunk('profile/fetchUser', async (userId) => {
-    const response = await axios.get(`http://localhost:3001/users/${userId}`);
+    const response = await axios.get(`${API_URL}/users/${userId}`);
     return response.data;
 })
 
 export const createLikeOnProfilePost = createAsyncThunk('profile/createLikeOnProfilePost', async (postId) => {
-    const response = await axios.post(`http://localhost:3001/posts/${postId}/likes`);
+    const response = await axios.post(`${API_URL}/posts/${postId}/likes`);
     return response.data;
 })
 
 export const removeLikeFromProfilePost = createAsyncThunk('profile/removeLikeFromProfilePost', async (postId) => {
-    const response = await axios.delete(`http://localhost:3001/posts/${postId}/likes`);
+    const response = await axios.delete(`${API_URL}/posts/${postId}/likes`);
     return response.data;
 })
 
 export const createCommentOnProfilePost = createAsyncThunk('profile/createCommentOnProfilePost', async (requestData) => {
-    const response = await axios.post(`http://localhost:3001/posts/${requestData.postId}/comments`, requestData.comment);
+    const response = await axios.post(`${API_URL}/posts/${requestData.postId}/comments`, requestData.comment);
     return response.data;
 })
 
 export const follow = createAsyncThunk('profile/follow', async (requestData) => {
-    const response = await axios.post(`http://localhost:3001/user-links`, requestData);
+    const response = await axios.post(`${API_URL}/user-links`, requestData);
     return response.data;
 })
 
 export const unFollow = createAsyncThunk('profile/unFollow', async (_, { getState }) => {
-    const response = await axios.delete(`http://localhost:3001/user-links/${getState().profile.following._id}`);
+    const response = await axios.delete(`${API_URL}/user-links/${getState().profile.following._id}`);
     return response.data;
 })
 

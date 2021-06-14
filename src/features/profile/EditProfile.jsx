@@ -5,16 +5,19 @@ import { FormControl } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
 import { VStack } from '@chakra-ui/layout';
 import { Box, Container, Flex, Heading } from '@chakra-ui/layout';
+import { useToast } from '@chakra-ui/react';
 import { Textarea } from '@chakra-ui/textarea';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { API_URL } from '../../config';
 import { uploadImage } from '../feed/utils';
 import { updateUser } from '../user/userSlice';
 
 function EditProfile() {
   const { loggedInUser } = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const toast = useToast();
 
   const [formValues, setFormValues] = useState({
     username: '',
@@ -63,12 +66,28 @@ function EditProfile() {
       }
       console.log(requestBody);
       const response = await axios.post(
-        'http://localhost:3001/users',
+        `${API_URL}/users`,
         requestBody
       );
       dispatch(updateUser(response.data.user));
+      toast({
+        position: 'bottom-right',
+        title: `Saved`,
+        description: `Your details have been saved successfully`,
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      });
     } catch (error) {
       console.log(error);
+      toast({
+        position: 'bottom-right',
+        title: `Failed`,
+        description: `Something went wrong. Please try again later`,
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      });
     }
   };
 

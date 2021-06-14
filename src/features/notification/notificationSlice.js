@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
+import { API_URL } from "../../config";
 
 export const fetchNotifications = createAsyncThunk('user/fetchNotifications', async () => {
-    const response = await axios.get('http://localhost:3001/notifications');
+    const response = await axios.get(`${API_URL}/notifications`);
     return response.data;
 })
 

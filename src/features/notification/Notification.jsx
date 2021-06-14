@@ -85,7 +85,6 @@ function Notification() {
                           src={notification.sourceUser.photo}
                         />
                         <Box width="full" ml={2}>
-                          <TimeAgo timestamp={notification.time} />
                           {notification.notificationType === 'NEW POST' && (
                             <>
                               <Link
@@ -154,6 +153,7 @@ function Notification() {
                               <span>&nbsp;commented on your post.</span>
                             </>
                           )}
+                          <TimeAgo timestamp={notification.time} />
                         </Box>
                       </Flex>
                     </Box>

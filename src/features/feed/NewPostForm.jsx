@@ -30,7 +30,6 @@ function NewPostForm() {
     media: [],
   });
 
-
   const handleFormValueChange = event => {
     setFormValues(formValues => {
       formValues[event.target.name] = event.target.value;
@@ -38,7 +37,25 @@ function NewPostForm() {
     });
   };
 
-  const handlePost = async event => {        
+  const validateFormData = formValues => {
+    if (formValues.content === '' && formValues.media.length === 0) {
+      return false;
+    }
+    return true;
+  };
+
+  const handlePost = async event => {
+    if (!validateFormData(formValues)) {
+      toast({
+        position: 'bottom-right',
+        title: `Empty Post`,
+        description: `Can't do empty post`,
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      });
+      return;
+    }
     if (!validateFileSize(imageFiles) || !validateFileSize(videoFiles)) {
       toast({
         position: 'bottom-right',
@@ -53,18 +70,20 @@ function NewPostForm() {
     setStatus('loading');
     let imagesMedia = await uploadImage(imageFiles);
     let videosMedia = await uploadVideo(videoFiles);
-    imagesMedia = imagesMedia.map((source) => ({
+    imagesMedia = imagesMedia.map(source => ({
       mediaType: 'IMAGE',
-      source
-    }))
-    videosMedia = videosMedia.map((source) => ({
+      source,
+    }));
+    videosMedia = videosMedia.map(source => ({
       mediaType: 'VIDEO',
-      source
-    }))
+      source,
+    }));
     console.log(imagesMedia);
-    console.log(videosMedia);    
-    formValues.time = new Date();                
-    await dispatch(addNewPost({...formValues, media:[...imagesMedia, ...videosMedia]}));
+    console.log(videosMedia);
+    formValues.time = new Date();
+    await dispatch(
+      addNewPost({ ...formValues, media: [...imagesMedia, ...videosMedia] })
+    );
     setStatus('idle');
     setFormValues({ content: '', time: null, media: [] });
     setImageFiles([]);

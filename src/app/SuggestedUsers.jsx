@@ -14,6 +14,7 @@ import React, { useEffect, useState } from 'react';
 import { FaWindowClose } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { API_URL } from '../config';
 
 function SuggestedUsers() {
   const [suggestedUsers, setSuggestUsers] = useState([]);
@@ -25,7 +26,7 @@ function SuggestedUsers() {
     if (loggedInUser) {
       (async function () {
         const response = await axios.get(
-          'http://localhost:3001/users/suggested-users'
+          `${API_URL}/users/suggested-users`
         );
         console.log(response.data);
         setSuggestUsers(response.data.users);
@@ -45,7 +46,7 @@ function SuggestedUsers() {
             onClick={() => setIsOpen(false)}
             position="absolute"
             top={5}
-            right={5}
+            right={2}
             aria-label="Search database"
             icon={<FaWindowClose />}
           />
@@ -57,6 +58,7 @@ function SuggestedUsers() {
             direction="row"
             gridGap={4}
             width="full"
+            flexWrap="wrap"
           >
             {suggestedUsers?.map(user => {
               return (
@@ -71,7 +73,7 @@ function SuggestedUsers() {
                   cursor="pointer"
                 >
                   <Avatar size="md" name={user.name} src={user.photo} />
-                  <Text mt={2}>{user.name}</Text>
+                  <Text mt={2} fontWeight="medium" fontSize={18}>{user.name}</Text>
                   <Text>{user.username}</Text>
                 </Box>
               );

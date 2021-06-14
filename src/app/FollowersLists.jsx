@@ -13,6 +13,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { API_URL } from '../config';
 
 function FollowersLists() {
   const { loggedInUser } = useSelector(state => state.user);
@@ -24,7 +25,7 @@ function FollowersLists() {
     (async function () {
       setStatus('loading');
       const response = await axios.get(
-        'http://localhost:3001/user-links?type=follower'
+        `${API_URL}/user-links?type=follower`
       );
       console.log(response.data);
       setFollowersList(response.data.followers);

@@ -70,6 +70,7 @@ function UserAccountDrawer() {
             >
               Edit Profile
             </Button>
+            <Divider />
             <Button onClick={() => handleLogout()} variant="ghost" width="full">
               Log Out
             </Button>
