@@ -27,8 +27,7 @@ function SuggestedUsers() {
       (async function () {
         const response = await axios.get(
           `${API_URL}/users/suggested-users`
-        );
-        console.log(response.data);
+        );        
         setSuggestUsers(response.data.users);
       })();
     }

@@ -17,10 +17,8 @@ function Feed() {
 
   useEffect(() => {
     if (user.loggedInUser !== null) {      
-      (async function () {
-        console.log('feed fetch started');
-        await dispatch(initPosts());
-        console.log('feed fetched');
+      (async function () {        
+        await dispatch(initPosts());        
       })();
     }
   }, [user.loggedInUser]);

@@ -16,14 +16,8 @@ export const uploadImage = async (imageFiles) => {
             }
         );
         response = await response.json();
-        imagesMedia.push(response.url);
-
-        // imagesMedia.push({
-        //     mediaType: 'IMAGE',
-        //     source: response.url,
-        // });
-    }
-    console.log("return")
+        imagesMedia.push(response.url);        
+    }    
     return imagesMedia;
 };
 

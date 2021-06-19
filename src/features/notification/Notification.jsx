@@ -29,10 +29,8 @@ function Notification() {
 
   useEffect(() => {
     if (loggedInUser) {
-      (async function () {                
-        console.log('notifications fetched started', loggedInUser);
-        await dispatch(fetchNotifications());
-        console.log('notifications fetched');
+      (async function () {                        
+        await dispatch(fetchNotifications());        
       })();
     }
   }, [dispatch, loggedInUser]);

@@ -28,8 +28,7 @@ function FollowingUsersList() {
       setStatus('loading');
       const response = await axios.get(
         `${API_URL}/user-links?userId=${userId}&&type=following`
-      );
-      console.log(response.data);
+      );      
       setFollowingList(response.data.followings);
       setStatus('idle');
     })();

@@ -25,13 +25,11 @@ const notificationSlice = createSlice({
         [fetchNotifications.pending]: (state, action) => {
             state.status = 'loading';
         },
-        [fetchNotifications.fulfilled]: (state, action) => {
-            console.log("fulfilled", state, action);
+        [fetchNotifications.fulfilled]: (state, action) => {            
             state.notifications = action.payload.notifications;
             state.status = 'idle';
         },
-        [fetchNotifications.rejected]: (state, action) => {
-            console.log("rejected", state, action);
+        [fetchNotifications.rejected]: (state, action) => {            
             state.status = 'error';
             state.error = action.error.message;
         }

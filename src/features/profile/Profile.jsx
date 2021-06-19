@@ -25,8 +25,7 @@ function Profile() {
   const loggedInUser = useSelector(state => state.user.loggedInUser);
   const [status, setStatus] = useState('idle');
   const toast = useToast();
-  const { state } = useLocation();
-  console.log(state);
+  const { state } = useLocation();  
   const {
     state: { userId },
   } = useLocation();
@@ -72,7 +71,7 @@ function Profile() {
             Timeline
           </Heading>
           {posts.length === 0 && <Center fontSize={25} mt={20}>No Posts Yet</Center>}
-          {posts.length > 0 && <VStack width="full" spacing={8} p={8}>
+          {posts.length > 0 && <VStack width="full" spacing={8} pt={8} pb={8}>
             {posts.map(post => {
               return (
                 <Post

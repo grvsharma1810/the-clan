@@ -24,8 +24,7 @@ function EditProfile() {
     bio: '',
     photo: null,
   });
-
-  console.log(formValues);
+  
 
   useEffect(() => {
     if (loggedInUser) {
@@ -51,8 +50,7 @@ function EditProfile() {
 
   const save = async () => {
     try {
-      let uploadedImageUrl = null;
-      console.log(formValues.photo);
+      let uploadedImageUrl = null;      
       let requestBody = {};
       if (formValues.photo && formValues.photo.length > 0) {
         uploadedImageUrl = await uploadImage(formValues.photo);
@@ -63,8 +61,7 @@ function EditProfile() {
       }
       if (formValues.bio !== '' || formValues.bio !== null) {
         requestBody.bio = formValues.bio;
-      }
-      console.log(requestBody);
+      }      
       const response = await axios.post(
         `${API_URL}/users`,
         requestBody

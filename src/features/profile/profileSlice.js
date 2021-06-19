@@ -52,61 +52,46 @@ const profileSlice = createSlice({
         }
     },
     extraReducers: {
-        [fetchUser.pending]: (state, action) => {
-            // console.log("Pending", action.payload);
+        [fetchUser.pending]: (state, action) => {            
 
         },
-        [fetchUser.fulfilled]: (state, action) => {
-            console.log("Payload", action.payload);
+        [fetchUser.fulfilled]: (state, action) => {            
             state.user = action.payload.user;
             state.following = action.payload.following;
         },
-        [fetchUser.rejected]: (state, action) => {
-            // console.log("Rejected", action.payload);            
+        [fetchUser.rejected]: (state, action) => {            
         },
 
-        [fetchProfilePosts.pending]: (state, action) => {
-            // console.log("Pending", action.payload);
+        [fetchProfilePosts.pending]: (state, action) => {            
 
         },
-        [fetchProfilePosts.fulfilled]: (state, action) => {
-            console.log("Payload", action.payload);
+        [fetchProfilePosts.fulfilled]: (state, action) => {            
             state.posts = action.payload.posts;
 
         },
-        [fetchProfilePosts.rejected]: (state, action) => {
-            // console.log("Rejected", action.payload);            
+        [fetchProfilePosts.rejected]: (state, action) => {                    
         },
-        [createLikeOnProfilePost.fulfilled]: (state, action) => {
-            console.log("LIKEDD", action.payload);
-            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);
-            console.log(postIndex);
+        [createLikeOnProfilePost.fulfilled]: (state, action) => {            
+            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);            
             state.posts[postIndex] = action.payload.post;
         },
-        [removeLikeFromProfilePost.fulfilled]: (state, action) => {
-            console.log("UN-LIKEDD", action.payload);
-            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);
-            console.log(postIndex);
+        [removeLikeFromProfilePost.fulfilled]: (state, action) => {            
+            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);            
             state.posts[postIndex] = action.payload.post;
         },
-        [createCommentOnProfilePost.fulfilled]: (state, action) => {
-            console.log("Commented", action.payload);
-            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);
-            console.log(postIndex);
+        [createCommentOnProfilePost.fulfilled]: (state, action) => {            
+            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);            
             state.posts[postIndex] = action.payload.post;
         },
-        [follow.fulfilled]: (state, action) => {
-            console.log(action.payload)
+        [follow.fulfilled]: (state, action) => {            
             state.following = action.payload.following;
             state.user.followerCount = state.user.followerCount + 1;
         },
-        [unFollow.fulfilled]: (state, action) => {
-            console.log(action.payload)
+        [unFollow.fulfilled]: (state, action) => {            
             state.following = null;
             state.user.followerCount = state.user.followerCount - 1;
         },
-        [unFollow.rejected]: (state, action) => {
-            console.log(action)
+        [unFollow.rejected]: (state, action) => {            
             state.following = null;
             state.user.followerCount = state.user.followerCount - 1;
         }

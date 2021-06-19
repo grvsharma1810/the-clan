@@ -38,21 +38,18 @@ const userSlice = createSlice({
                 if (key in state.loggedInUser) {
                     state.loggedInUser[key] = userUpdates[key];
                 }
-            })
-            console.log(state.loggedInUser);
+            })            
         }
     },
     extraReducers: {
         [login.pending]: (state, action) => {
             state.status = 'loading';
         },
-        [login.fulfilled]: (state, action) => {
-            console.log("fulfilled", state, action);
+        [login.fulfilled]: (state, action) => {            
             state.loggedInUser = action.payload.user;
             state.status = 'idle';
         },
-        [login.rejected]: (state, action) => {
-            console.log("rejected", state, action);
+        [login.rejected]: (state, action) => {            
             state.status = 'error';
             state.error = action.error.message;
         },
@@ -60,8 +57,7 @@ const userSlice = createSlice({
         [fetchUserData.pending]: (state, action) => {
             state.status = 'loading';
         },
-        [fetchUserData.fulfilled]: (state, action) => {
-            console.log("fulfilled", state, action);
+        [fetchUserData.fulfilled]: (state, action) => {            
             state.loggedInUser = action.payload.user;
             state.status = 'idle';
         },

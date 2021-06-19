@@ -24,10 +24,8 @@ function App() {
       const userDataFromLocalStorageData = JSON.parse(localStorage.getItem('user'));
       if (userDataFromLocalStorageData) {
         setupAuthHeaderForServiceCalls(userDataFromLocalStorageData.token);
-        setupAuthExceptionHandler(dispatch, logout, navigate, toast);
-        console.log("user data fetch started");
-        await dispatch(fetchUserData());
-        console.log("user data fetched");
+        setupAuthExceptionHandler(dispatch, logout, navigate, toast);        
+        await dispatch(fetchUserData());        
       } else {
         navigate("signin")
       }

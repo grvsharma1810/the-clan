@@ -77,9 +77,7 @@ function NewPostForm() {
     videosMedia = videosMedia.map(source => ({
       mediaType: 'VIDEO',
       source,
-    }));
-    console.log(imagesMedia);
-    console.log(videosMedia);
+    }));    
     formValues.time = new Date();
     await dispatch(
       addNewPost({ ...formValues, media: [...imagesMedia, ...videosMedia] })

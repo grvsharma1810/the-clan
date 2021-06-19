@@ -27,8 +27,7 @@ export const removeLikeFromFeedPost = createAsyncThunk('feed/removeLikeFromFeedP
     return response.data;
 })
 
-export const createCommentOnFeedPost = createAsyncThunk('feed/createCommentOnFeedPost', async (requestData) => {
-    console.log({ requestData });
+export const createCommentOnFeedPost = createAsyncThunk('feed/createCommentOnFeedPost', async (requestData) => {    
     const response = await axios.post(`${API_URL}/posts/${requestData.postId}/comments`, requestData.comment);
     return response.data;
 })
@@ -62,12 +61,10 @@ const feedSlice = createSlice({
             }
             state.status = 'idle';
         },
-        [fetchFeedPosts.pending]: (state, action) => {
-            // console.log("Pending", action.payload);
+        [fetchFeedPosts.pending]: (state, action) => {            
             state.status = 'loading';
         },
-        [fetchFeedPosts.fulfilled]: (state, action) => {
-            console.log("Payload", action.payload);
+        [fetchFeedPosts.fulfilled]: (state, action) => {            
             state.posts = state.posts.concat(action.payload.posts);
             if (action.payload.next) {
                 state.next = action.payload.next;
@@ -76,31 +73,23 @@ const feedSlice = createSlice({
             }
             state.status = 'idle';
         },
-        [fetchFeedPosts.rejected]: (state, action) => {
-            // console.log("Rejected", action.payload);
+        [fetchFeedPosts.rejected]: (state, action) => {         
             state.status = 'error';
             state.error = action.error.message;
         },
-        [addNewPost.fulfilled]: (state, action) => {
-            console.log("Fullfiledddddd", action.payload);
+        [addNewPost.fulfilled]: (state, action) => {            
             state.posts.unshift(action.payload.post);
         },
-        [createLikeOnFeedPost.fulfilled]: (state, action) => {
-            console.log("LIKEDD", action.payload);
-            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);
-            console.log(postIndex);
+        [createLikeOnFeedPost.fulfilled]: (state, action) => {            
+            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);            
             state.posts[postIndex] = action.payload.post;
         },
-        [removeLikeFromFeedPost.fulfilled]: (state, action) => {
-            console.log("UN-LIKEDD", action.payload);
-            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);
-            console.log(postIndex);
+        [removeLikeFromFeedPost.fulfilled]: (state, action) => {            
+            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);            
             state.posts[postIndex] = action.payload.post;
         },
-        [createCommentOnFeedPost.fulfilled]: (state, action) => {
-            console.log("Commented", action.payload);
-            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);
-            console.log(postIndex);
+        [createCommentOnFeedPost.fulfilled]: (state, action) => {            
+            const postIndex = state.posts.findIndex(post => action.payload.post._id === post._id);            
             state.posts[postIndex] = action.payload.post;
         },
     }

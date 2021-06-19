@@ -47,8 +47,7 @@ function UserSignInPage() {
       });
       navigate('/');
     } catch (error) {
-      console.log(error.response);
-      console.log(user);
+      console.log(error.response);      
       toast({
         position: 'bottom-right',
         title: error.message,

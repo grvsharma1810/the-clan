@@ -6,8 +6,7 @@ import React, { useState } from 'react';
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 
 function PostMedia({ media }) {
-  const [currMediaIndex, setCurrMediaIndex] = useState(0);
-  console.log(media, currMediaIndex);
+  const [currMediaIndex, setCurrMediaIndex] = useState(0);  
   const next = () => {
     if (currMediaIndex === media.length - 1) {
       setCurrMediaIndex(0);
