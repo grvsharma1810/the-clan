@@ -15,7 +15,7 @@ import { Spinner } from '@chakra-ui/spinner';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
-import Post from '../feed/Post';
+import Post from '../../common/post/Post';
 import { fetchUser, fetchProfilePosts, resetProfile } from './profileSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useToast } from '@chakra-ui/toast';
@@ -72,7 +72,7 @@ function Profile() {
             Timeline
           </Heading>
           {posts.length === 0 && <Center fontSize={25} mt={20}>No Posts Yet</Center>}
-          {posts.length > 0 && <VStack width="full" spacing={8} mt={8}>
+          {posts.length > 0 && <VStack width="full" spacing={8} p={8}>
             {posts.map(post => {
               return (
                 <Post

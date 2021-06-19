@@ -2,17 +2,16 @@ import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router';
 import UserSignInPage from './features/user/UserSignInPage';
 import UserSignUpPage from './features/user/UserSignUpPage';
-import PageNotFound from './app/page-not-found/PageNotFound';
+import PageNotFound from './app/PageNotFound';
 import { useDispatch } from 'react-redux';
 import { useToast } from '@chakra-ui/toast';
 import { setupAuthExceptionHandler, setupAuthHeaderForServiceCalls } from './features/user/utils';
 import { fetchUserData, logout } from './features/user/userSlice';
-import Feed from './features/feed/Feed';
 import Navbar from './app/navbar/Navbar';
 import Profile from './features/profile/Profile';
-import HomePage from './app/HomePage';
-import FollowingUsersList from './app/FollowingUsersList';
-import FollowersLists from './app/FollowersLists';
+import HomePage from './app/homepage/HomePage';
+import FollowingUsersList from './features/profile/FollowingUsersList';
+import FollowersLists from './features/profile/FollowersLists';
 import EditProfile from './features/profile/EditProfile';
 
 function App() {
@@ -28,7 +27,7 @@ function App() {
         setupAuthExceptionHandler(dispatch, logout, navigate, toast);
         console.log("user data fetch started");
         await dispatch(fetchUserData());
-        console.log("user data fetched");        
+        console.log("user data fetched");
       } else {
         navigate("signin")
       }
@@ -39,7 +38,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />        
+        <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/following" element={<FollowingUsersList />} />

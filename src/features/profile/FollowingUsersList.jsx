@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
-import { API_URL } from '../config';
+import { API_URL } from '../../config';
 
 function FollowingUsersList() {
   const { loggedInUser } = useSelector(state => state.user);

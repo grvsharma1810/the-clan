@@ -7,8 +7,9 @@ export const saveUserDataToLocalStorage = (user, token) => {
     }))
 }
 
-export const setupAuthHeaderForServiceCalls = (token) => {
+export const setupAuthHeaderForServiceCalls = (token) => {    
     if (token) {
+        console.log("HEADER SET");
         return (axios.defaults.headers.common["Authorization"] = token);
     }
     delete axios.defaults.headers.common["Authorization"];

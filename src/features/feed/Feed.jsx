@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFeedPosts, initPosts } from './feedSlice';
 import { FaCheckCircle } from 'react-icons/fa';
-import Post from './Post';
+import Post from '../../common/post/Post';
 import { Center } from '@chakra-ui/layout';
 import NewPostForm from './NewPostForm';
 
@@ -50,7 +50,7 @@ function Feed() {
           </HStack>
         )}
       </Center>
-      {feed.status === 'loading' && (
+      {(feed.status === 'loading' || user.status === 'loading') && (
         <>
           <VStack width="full" spacing={8}>
             <Box width="full">

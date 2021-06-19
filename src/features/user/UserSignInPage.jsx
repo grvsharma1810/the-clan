@@ -14,7 +14,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import { login, logout } from './userSlice';
 import {
   saveUserDataToLocalStorage,
@@ -38,8 +37,6 @@ function UserSignInPage() {
     try {
       let result = await dispatch(login(formValues));
       result = unwrapResult(result);
-      saveUserDataToLocalStorage(result.user, result.token);
-      setupAuthHeaderForServiceCalls(result.token);
       setupAuthExceptionHandler(dispatch, logout, navigate, toast);
       toast({
         position: 'bottom-right',
@@ -50,7 +47,7 @@ function UserSignInPage() {
       });
       navigate('/');
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
       console.log(user);
       toast({
         position: 'bottom-right',
@@ -65,7 +62,7 @@ function UserSignInPage() {
   const handleInput = event => {
     setFormValues(formValues => {
       formValues[event.target.name] = event.target.value;
-      return {...formValues};
+      return { ...formValues };
     });
   };
 
@@ -109,7 +106,9 @@ function UserSignInPage() {
                 />
               </FormControl>
               <Button width="full" colorScheme="purple" type="submit">
-                {(user.status === 'idle' || user.status === 'error') && <span>Log In</span>}
+                {(user.status === 'idle' || user.status === 'error') && (
+                  <span>Log In</span>
+                )}
                 {user.status === 'loading' && <Spinner />}
               </Button>
             </VStack>

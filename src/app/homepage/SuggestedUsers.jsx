@@ -14,7 +14,7 @@ import React, { useEffect, useState } from 'react';
 import { FaWindowClose } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { API_URL } from '../config';
+import { API_URL } from '../../config';
 
 function SuggestedUsers() {
   const [suggestedUsers, setSuggestUsers] = useState([]);

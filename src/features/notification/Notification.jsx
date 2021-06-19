@@ -18,24 +18,25 @@ import React, { useEffect } from 'react';
 import { FaBell } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import TimeAgo from '../feed/TimeAgo';
+import TimeAgo from '../../common/TimeAgo';
 import { fetchNotifications } from './notificationSlice';
 
 function Notification() {
   const { loggedInUser } = useSelector(state => state.user);
   const { notifications } = useSelector(state => state.notification);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useNavigate();    
 
   useEffect(() => {
     if (loggedInUser) {
-      (async function () {
-        console.log('notifications fetched started');
+      (async function () {                
+        console.log('notifications fetched started', loggedInUser);
         await dispatch(fetchNotifications());
         console.log('notifications fetched');
       })();
     }
   }, [dispatch, loggedInUser]);
+
   return (
     <Popover>
       <PopoverTrigger>

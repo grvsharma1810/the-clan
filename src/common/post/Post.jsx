@@ -16,8 +16,8 @@ import {
 import { Collapse } from '@chakra-ui/transition';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TimeAgo from './TimeAgo';
-import { isPostLikedByLoggedInUser } from './utils';
+import TimeAgo from '../TimeAgo';
+import { isPostLikedByLoggedInUser } from '../../features/feed/utils';
 import { useNavigate } from 'react-router';
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa';
 import PostMedia from './PostMedia';
@@ -25,12 +25,12 @@ import {
   createCommentOnFeedPost,
   createLikeOnFeedPost,
   removeLikeFromFeedPost,
-} from './feedSlice';
+} from '../../features/feed/feedSlice';
 import {
   createCommentOnProfilePost,
   createLikeOnProfilePost,
   removeLikeFromProfilePost,
-} from '../profile/profileSlice';
+} from '../../features/profile/profileSlice';
 import {
   Drawer,
   DrawerBody,

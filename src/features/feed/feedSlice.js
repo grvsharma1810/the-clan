@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { API_URL } from "../../config";
+import axios from "axios";
 
 export const initPosts = createAsyncThunk('feed/initPosts', async (_, { getState }) => {
-    const response = await axios.get(`${API_URL}/home/feed?current=${getState().feed.next}&&size=5`);
+    const response = await axios.get(`${API_URL}/home/feed?current=0&&size=5`);
     return response.data;
 })
 

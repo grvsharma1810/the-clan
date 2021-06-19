@@ -1,24 +1,13 @@
-import { Button, IconButton } from '@chakra-ui/button';
+import { IconButton } from '@chakra-ui/button';
 import { Image } from '@chakra-ui/image';
-import { FaBell, FaHome } from 'react-icons/fa';
-import { Box, Circle, Flex, Heading, HStack, Spacer } from '@chakra-ui/layout';
-import React, { useEffect } from 'react';
-import { ColorModeSwitcher } from '../../ColorModeSwitcher';
+import { FaHome } from 'react-icons/fa';
+import { Flex, Heading, HStack, Spacer } from '@chakra-ui/layout';
+import React from 'react';
+import { ColorModeSwitcher } from './ColorModeSwitcher';
 import logo from '../../logo.svg';
-import { Avatar } from '@chakra-ui/avatar';
 import { useColorModeValue } from '@chakra-ui/color-mode';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { fetchNotifications } from '../../features/notification/notificationSlice';
-import {
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-} from '@chakra-ui/popover';
 import Notification from '../../features/notification/Notification';
 import UserAccountDrawer from './UserAccountDrawer';
 
@@ -32,7 +21,7 @@ function Navbar() {
       mb={4}
       position="sticky"
       top="0"
-      zIndex="sticky"      
+      zIndex="sticky"
       bg={useColorModeValue('white', 'gray.800')}
     >
       <HStack
@@ -57,7 +46,7 @@ function Navbar() {
               color="current"
               icon={<FaHome />}
             />
-            <UserAccountDrawer/>
+            <UserAccountDrawer />
           </>
         )}
         <ColorModeSwitcher justifySelf="flex-end" />

@@ -12,7 +12,6 @@ import { useToast } from '@chakra-ui/toast';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import { API_URL } from '../../config';
 
 function UserSignUpPage() {
@@ -26,9 +25,9 @@ function UserSignUpPage() {
     username: null,
   });
 
-  const handleFormSubmit = async event => {
-    event.preventDefault();
-    try {
+  const handleFormSubmit = async event => {    
+    event.preventDefault();    
+    try {            
       setStatus('loading');
       const response = await axios.post(
         `${API_URL}/signup`,
@@ -47,9 +46,10 @@ function UserSignUpPage() {
       }
     } catch (error) {
       setStatus('idle');
+      console.log(error.response);
       toast({
         position: 'top-right',
-        title: `Some Error Occurred`,
+        title: error.response?.data?.message ? error.response?.data?.message : "Something Went Wrong",
         status: 'error',
         duration: 2000,
         isClosable: true,

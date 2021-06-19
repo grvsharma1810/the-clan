@@ -14,10 +14,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
-import { API_URL } from '../config';
+import { API_URL } from '../../config';
 
 function FollowersLists() {
-  const { loggedInUser } = useSelector(state => state.user);
   const [followersList, setFollowersList] = useState([]);
   const [status, setStatus] = useState('idle');
   const navigate = useNavigate();
